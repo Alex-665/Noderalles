@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 </script>
@@ -44,4 +44,18 @@ header {
     flex-wrap: wrap;
   }
 }
-</style>
+</style> -->
+
+<template>
+    <myFetch/>
+</template>
+
+<script>
+    import myFetch from "./assets/fetch.vue"
+    export default {
+        components: {
+        myFetch
+        }
+    }
+</script>
+
