@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <DisplayNumber value="16"/>
-    </div>
+    <h1 class="value">{{value}}</h1>
 </template>
 
 <script>
     export default {
-        name 'DisplayNumber',
+        name: 'DisplayNumber',
         props: ["value"]
     }
 </script>

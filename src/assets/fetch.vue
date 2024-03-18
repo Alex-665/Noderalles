@@ -1,7 +1,4 @@
 <template>
-    <div>
-    </div>
-    <span id="res"></span>
 </template>
 
 <style>
