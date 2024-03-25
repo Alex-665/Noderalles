@@ -1,19 +1,30 @@
 <template>
     <div>
-        <DisplayNumber :value="15"/>
-        <DisplayNumber :value="17"/>
+        <li v-for="(number, text) in numberData"> 
+            <button name="b" type="buttonNumber">{{text}}</button>
+        </li>
     </div>
 </template>
 
 <script>
-    import DisplayNumber from "./etiquette.vue"
+    import displayNumber from "./etiquette.vue"
     import {fetchRangeMath} from "../utils.js"
     export default {
         components: {
-            DisplayNumber
+            displayNumber
+        },
+        data() {
+            return {
+                numberData: []
+            }
+        },
+        created: function() {
+            this.retrieveRangeMath()
         },
         methods: {
+            async retrieveRangeMath() {
+                this.numberData = await fetchRangeMath()
+            }
         }
     }
 </script>
-

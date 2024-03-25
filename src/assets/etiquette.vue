@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: 'DisplayNumber',
+        name: 'displayNumber',
         props: ["value"]
     }
 </script>
