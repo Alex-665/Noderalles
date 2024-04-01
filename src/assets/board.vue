@@ -1,10 +1,17 @@
 <template>
-    <div>
-        <li v-for="(number, text) in numberData"> 
-            <button name="b" type="buttonNumber">{{text}}</button>
-        </li>
-    </div>
+    <select id="sort-type">
+        <option value="croissant">croissant</option>
+        <option value="decroissant">decroissant</option>
+    </select>
+    <displayNumber v-for="(text, number) in numberData" v-bind:value="number"/>
 </template>
+
+<style>
+    div {
+        display: flex;
+        width: 100%;
+    }
+</style>
 
 <script>
     import displayNumber from "./etiquette.vue"
@@ -15,7 +22,8 @@
         },
         data() {
             return {
-                numberData: []
+                numberData: [],
+                a: 10 
             }
         },
         created: function() {
@@ -24,7 +32,7 @@
         methods: {
             async retrieveRangeMath() {
                 this.numberData = await fetchRangeMath()
-            }
+            },
         }
     }
 </script>

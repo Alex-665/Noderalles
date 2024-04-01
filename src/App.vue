@@ -47,15 +47,15 @@ header {
 </style> -->
 
 <template>
-    <myNumber/>
+    <myNumbers/>
 </template>
 
 <script>
     import myFetch from "./assets/fetch.vue"
-    import myNumber from "./assets/board.vue"
+    import myNumbers from "./assets/board.vue"
     export default {
         components: {
-        myFetch, myNumber
+        myFetch, myNumbers
         }
     }
 </script>
