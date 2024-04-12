@@ -1,8 +1,14 @@
 //useful functions for all the project
 
 async function fetchRangeMath() {
-    //regarder ici si on ne peut pas avoir tous les fetch comme des éléments json individuels
-    return await (await fetch("http://numbersapi.com/1..50/math?json")).json()
+    let response = await fetch("http://numbersapi.com/1..20/math?json");
+    let data = await response.json();
+    let res = new Array();
+    for (let key in data) {
+        res.push(data[key]);
+    }
+    console.log(res);
+    return res;
 }
 
 //async function fetchNumber(number) {

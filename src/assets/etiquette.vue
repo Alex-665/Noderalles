@@ -1,11 +1,11 @@
 <template>
-    <button class="prout" v-on:click="displayText">{{value}}</button>
-    <div v-if="displayFact == 0">{{fact}}</div>
+    <button class="prout" v-if="counter % 2 == 0" v-on:click="counter += 1">{{value}}</button>
+    <button class="prout" v-else v-on:click="counter += 1">{{fact}}</button>
 </template>
 
 <style>
     .prout {
-        width: 50%;
+        width: 100%;
     }
 </style>
 
@@ -16,7 +16,8 @@
         emit: ["enable"],
         data() {
             return {
-                displayFact: 1
+                displayFact: 1,
+                counter: 0
             }
         },
         metods: {
