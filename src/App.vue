@@ -51,11 +51,10 @@ header {
 </template>
 
 <script>
-    import myFetch from "./assets/fetch.vue"
     import myNumbers from "./assets/board.vue"
     export default {
         components: {
-        myFetch, myNumbers
+        myNumbers
         }
     }
 </script>
