@@ -8,8 +8,16 @@
     <!--<displayNumber v-for="n in numberData.length" v-bind:value="n"/>-->
     <input type="number" v-model="limit"/>
     <div>
-        <input type="checkbox" v-on:click="greaterNumber" name="scales">
+        <input type="checkbox" v-on:click="greatBool += 1, allFilters()" name="scales">
         <label for="scales">GreaterThan</label>
+    </div>
+    <div>
+        <input type="checkbox" v-on:click="oddBool += 1, allFilters()" name="scales">
+        <label for="scales">Odd</label>
+    </div>
+    <div>
+        <input type="checkbox" v-on:click="evenBool += 1, allFilters()" name="scales">
+        <label for="scales">Even</label>
     </div>
         
     <button v-on:click="greaterNumber">greater</button>
@@ -35,6 +43,8 @@
             return {
                 limit: 0,
                 greatBool: 0,
+                oddBool: 0,
+                evenBool: 0,
                 numberData: [],
                 indexArray: [],
                 tmpArray: []
@@ -50,26 +60,32 @@
                 this.indexArray = dataArrays.indexArray
                 this.tmpArray = dataArrays.indexArray
             },
-            //faut faire de cette manière les filtres et c'est bon
             greaterNumber() {
-                this.greatBool += 1
                 if (this.greatBool % 2 == 1) {
                     let res = []
+                    //on itère sur indexArray car c'est le premier filtre à être appliqué, sinon les autres doivent être appliqués sur le tmpArray
                     res = this.indexArray.filter((x) => {return x > this.limit})
                     this.tmpArray = res
                 }
                 else this.tmpArray = this.indexArray
             },
             evenNumber() {
-                let res = []
-                res = this.indexArray.filter((x) => {return x % 2 == 0})
-                this.tmpArray = res
+                if (this.evenBool % 2 == 1) {
+                    let res = []
+                    res = this.tmpArray.filter((x) => {return x % 2 == 0})
+                    this.tmpArray = res
+                }
+                //else this.tmpArray = this.indexArray
             },
             oddNumber() {
-                let res = []
-                res = this.indexArray.filter((x) => {return x % 2 == 1})
-                this.tmpArray = res
+                if (this.oddBool % 2 == 1) {
+                    let res = []
+                    res = this.tmpArray.filter((x) => {return x % 2 == 1})
+                    this.tmpArray = res
+                }
+                //else this.tmpArray = this.indexArray
             },
+            //à faire après mais le principe est là donc ça va
             primeNumber() {
             },
             fiboNumber() {
@@ -80,6 +96,9 @@
                 this.tmpArray = reversed
             },
             allFilters() {
+                this.greaterNumber()
+                this.oddNumber()
+                this.evenNumber()
             }
         }
     }
