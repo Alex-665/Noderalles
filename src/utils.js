@@ -7,7 +7,7 @@ async function fetchRangeMath() {
     let indexArray = new Array();
     for (let key in data) {
         facts.push(data[key]);
-        indexArray.push(key)
+        indexArray.push(parseInt(key))
     }
     return {facts, indexArray};
 }
