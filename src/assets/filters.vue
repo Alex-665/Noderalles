@@ -1,16 +1,19 @@
 <template>
     <input type="number" v-model="limit"/>
     <div>
-        <input type="checkbox" v-on:click="greatBool += 1, updateAllFilters()" name="greater">
-        <label for="greater">GreaterThan</label>
+        <label class="container">GreaterThan
+            <input type="checkbox" v-on:click="greatBool += 1, updateAllFilters()">
+        </label>
     </div>
     <div>
-        <input type="checkbox" v-on:click="oddBool += 1, updateAllFilters()" name="odd">
-        <label for="odd">Odd</label>
+        <label class="container">Odd
+            <input type="checkbox" v-on:click="oddBool += 1, updateAllFilters()">
+        </label>
     </div>
     <div>
-        <input type="checkbox" v-on:click="evenBool += 1, updateAllFilters()" name="even">
-        <label for="even">Even</label>
+        <label class="container">Even
+            <input type="checkbox" v-on:click="evenBool += 1, updateAllFilters()">
+        </label>
     </div>
     <div>
         <input type=text v-model="search" placeholder="Rechercher un mot dans les facts">
@@ -18,12 +21,21 @@
 </template>
 
 <style>
+    div {
+    }
+    .container {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        margin: 1em;
+        font-size: 22px;
+    }
 </style>
 
 <script>
     export default {
         name: 'filterNumbers',
-        props: ["completeArray", "filteredArray"],
+        props: ["factArray", "completeArray", "filteredArray"],
         emits: ["update:filteredArray"],
         data() {
             return {
@@ -35,7 +47,7 @@
             }
         },
         watch: {
-            search() { }
+            search() { this.updateAllFilters() }
         },
         methods: {
             updateAllFilters: function() {
@@ -69,21 +81,22 @@
             updateSearch(t) {
                 let res = []
                 if (this.search != ""){
-                    let data = this.completeArray
+                    let data = this.factArray
                     for (let i = 0; i<data.length; i++) {
                         if (data[i].toLowerCase().includes(this.search)) {
-                            if (t.includes(i)) {
-                                res.push(i)
-                            }
+                            res.push(i)
                         }
                     }
+                    res = res.filter((x) => t.includes(x))
+                    return res
                 }
-                return res
+                else return t
             },
             allFilters() {
                 let t = this.greaterNumber(this.completeArray)
                 t = this.oddNumber(t)
                 t = this.evenNumber(t)
+                t = this.updateSearch(t)
                 return t
             }
         }

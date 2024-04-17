@@ -47,7 +47,13 @@ header {
 </style> -->
 
 <template>
+    <header class="header"> 
+        <h1>Header of super cool facts about numbers</h1>
+    </header>
     <myNumbers/>
+    <footer class="header">
+        <h1>Footer of super cool facts about numbers</h1>
+    </footer>
 </template>
 
 <script>
@@ -59,3 +65,9 @@ header {
     }
 </script>
 
+<style>
+    .header {
+        width: 100%;
+        margin: 0;
+    }
+</style>
