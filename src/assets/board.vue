@@ -1,8 +1,21 @@
 <template>
+    <div>
+        <button v-on:click="reverseData">Reverse</button>
+    </div>
     <filterNumbers v-bind:factArray="numberData" v-bind:filteredArray="tmpArray" v-bind:completeArray="indexArray" v-model:filteredArray="tmpArray"/> 
     <displayNumber v-for="n in tmpArray" v-bind:value="n" v-bind:fact="numberData[n]"/>
-    <button v-on:click="reverseData">reverse</button>
 </template>
+
+<style>
+    button {
+        display: flex;
+    }
+    div {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+</style>
 
 <script>
     import displayNumber from "./etiquette.vue"
@@ -39,13 +52,3 @@
     }
 </script>
 
-<style>
-    button {
-        display: flex;
-    }
-    div {
-        display: flex;
-        height: 100%;
-        width: 100%;
-    }
-</style>

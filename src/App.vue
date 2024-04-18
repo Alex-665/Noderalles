@@ -49,6 +49,7 @@ header {
 <template>
     <header class="header"> 
         <h1>Header of super cool facts about numbers</h1>
+        <h2>Click on numbers you want to discover a fact about !</h2>
     </header>
     <myNumbers/>
     <footer class="header">
@@ -68,6 +69,8 @@ header {
 <style>
     .header {
         width: 100%;
-        margin: 0;
+        text-align: center;
+        color: red;
+        background: orange;
     }
 </style>

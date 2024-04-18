@@ -12,9 +12,9 @@
         color: black;
         text-align: center;
         border: none;
-        display: flex;
         justify-content: center;
         border-radius: 2em;
+        width: 30%;
 
     }
 </style>

@@ -1,34 +1,32 @@
 <template>
-    <input type="number" v-model="limit"/>
+    <div>
+        <input class="research" type=text v-model="search" placeholder="Rechercher un mot dans les facts">
+    </div>
+    <div>
+        <input class="research" type="number" v-model="limit"/>
+    </div>
     <div>
         <label class="container">GreaterThan
             <input type="checkbox" v-on:click="greatBool += 1, updateAllFilters()">
         </label>
-    </div>
-    <div>
         <label class="container">Odd
             <input type="checkbox" v-on:click="oddBool += 1, updateAllFilters()">
         </label>
-    </div>
-    <div>
         <label class="container">Even
             <input type="checkbox" v-on:click="evenBool += 1, updateAllFilters()">
         </label>
     </div>
-    <div>
-        <input type=text v-model="search" placeholder="Rechercher un mot dans les facts">
-    </div>
 </template>
 
 <style>
-    div {
+    .research {
+        font-size: 22px;
+        width: 50%;
+        margin: auto;
     }
     .container {
-        display: block;
-        position: relative;
-        cursor: pointer;
-        margin: 1em;
         font-size: 22px;
+        width: 30%;
     }
 </style>
 
