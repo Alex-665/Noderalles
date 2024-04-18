@@ -57,6 +57,21 @@ header {
     </footer>
 </template>
 
+<style>
+    .header {
+        width: 100%;
+        text-align: center;
+        color: red;
+        background: orange;
+    }
+    @media (max-aspect-ratio: 1/1) {
+        .header {
+            width: 100%;
+            background: blue;
+        }
+    }
+</style>
+
 <script>
     import myNumbers from "./assets/board.vue"
     export default {
@@ -66,11 +81,3 @@ header {
     }
 </script>
 
-<style>
-    .header {
-        width: 100%;
-        text-align: center;
-        color: red;
-        background: orange;
-    }
-</style>

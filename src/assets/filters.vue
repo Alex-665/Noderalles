@@ -5,17 +5,13 @@
     <div>
         <input class="research" type="number" v-model="limit"/>
     </div>
-    <div>
-        <label class="container">GreaterThan
-            <input type="checkbox" v-on:click="greatBool += 1, updateAllFilters()">
-        </label>
-        <label class="container">Odd
-            <input type="checkbox" v-on:click="oddBool += 1, updateAllFilters()">
-        </label>
-        <label class="container">Even
-            <input type="checkbox" v-on:click="evenBool += 1, updateAllFilters()">
-        </label>
-    </div>
+    <button class="notActived" v-if="greatBool % 2 == 0" v-on:click="greatBool += 1, updateAllFilters()">GreaterThan</button>
+    <button class="actived" v-else v-on:click="greatBool += 1, updateAllFilters()">GreaterThan</button>
+    <button class="notActived" v-if="oddBool % 2 == 0" v-on:click="oddBool += 1, updateAllFilters()">Odd</button>
+    <button class="actived" v-else v-on:click="oddBool += 1, updateAllFilters()">Odd</button>
+    <button class="notActived" v-if="evenBool % 2 == 0" v-on:click="evenBool += 1, updateAllFilters()">Even</button>
+    <button class="actived" v-else v-on:click="evenBool += 1, updateAllFilters()">Even</button>
+
 </template>
 
 <style>
@@ -24,9 +20,29 @@
         width: 50%;
         margin: auto;
     }
-    .container {
+    .notActived {
+        background-color: white;
+        justify-content: center;
         font-size: 22px;
         width: 30%;
+        border: none;
+    }
+    .actived {
+        background-color: orange;
+        justify-content: center;
+        font-size: 22px;
+        font-size: 22px;
+        width: 30%;
+        border: none;
+        color: red;
+    }
+    @media (max-aspect-ratio: 1/1) {
+        .notActived {
+            width: 100%;
+        }
+        .actived {
+            width: 100%;
+        }
     }
 </style>
 
@@ -38,14 +54,26 @@
         data() {
             return {
                 limit: 0,
-                greatBool: 0,
-                oddBool: 0,
-                evenBool: 0,
-                search: ""
+                greatBool: parseInt(localStorage.getItem("greatBool")) || 0,
+                oddBool: parseInt(localStorage.getItem("oddBool")) || 0,
+                evenBool: parseInt(localStorage.getItem("evenBool")) || 0,
+                search: localStorage.getItem("search") || ""
             }
         },
         watch: {
-            search() { this.updateAllFilters() }
+            search: function(newSearch) {
+                this.updateAllFilters()
+                localStorage.setItem("search", newSearch)
+            },
+            greatBool: function(newGreatBool) {
+                localStorage.setItem("greatBool", newGreatBool)
+            },
+            oddBool: function(newOddBool) {
+                localStorage.setItem("oddBool", newOddBool)
+            },
+            evenBool: function(newEvenBool) {
+                localStorage.setItem("evenBool", newEvenBool)
+            }
         },
         methods: {
             updateAllFilters: function() {
@@ -81,7 +109,7 @@
                 if (this.search != ""){
                     let data = this.factArray
                     for (let i = 0; i<data.length; i++) {
-                        if (data[i].toLowerCase().includes(this.search)) {
+                        if (data[i].toLowerCase().includes(this.search.toLowerCase())) {
                             res.push(i)
                         }
                     }

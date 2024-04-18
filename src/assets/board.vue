@@ -1,8 +1,8 @@
 <template>
+    <filterNumbers v-bind:factArray="numberData" v-bind:filteredArray="tmpArray" v-bind:completeArray="indexArray" v-model:filteredArray="tmpArray"/> 
     <div>
         <button v-on:click="reverseData">Reverse</button>
     </div>
-    <filterNumbers v-bind:factArray="numberData" v-bind:filteredArray="tmpArray" v-bind:completeArray="indexArray" v-model:filteredArray="tmpArray"/> 
     <displayNumber v-for="n in tmpArray" v-bind:value="n" v-bind:fact="numberData[n]"/>
 </template>
 
@@ -12,7 +12,6 @@
     }
     div {
         display: flex;
-        height: 100%;
         width: 100%;
     }
 </style>
@@ -30,25 +29,39 @@
             return {
                 numberData: [],
                 indexArray: [],
-                tmpArray: []
+                tmpArray: this.stringToArray(localStorage.getItem("tmpArray")) || []
             }
         },
         created: function() {
             this.retrieveRangeMath(this.beg, this.end)
+        },
+        watch: {
+            tmpArray: function(newTmpArray) {
+                let tmpString = ""
+                for (let i = 0; i<newTmpArray.length; i++) {
+                    tmpString = tmpString + newTmpArray[i].toString() + " "
+                }
+                localStorage.setItem("tmpArray", tmpString)
+            }
         },
         methods: {
             async retrieveRangeMath(beg, end) {
                 let dataArrays = await fetchRangeMath(beg, end)
                 this.numberData = dataArrays.facts
                 this.indexArray = dataArrays.indexArray
-                this.tmpArray = dataArrays.indexArray
+                this.tmpArray = this.stringToArray(localStorage.getItem("tmpArray")) || dataArrays.indexArray
             },
             reverseData() {
                 let reversed = []
                 reversed = this.tmpArray.reverse()
                 this.tmpArray = reversed
             },
+            stringToArray(t) {
+                let res = []
+                res = t.split(' ')
+                res.map((x) => parseInt(x))
+                return res
+            }
         }
     }
 </script>
-
