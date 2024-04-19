@@ -15,6 +15,7 @@
         justify-content: center;
         border-radius: 2em;
         width: 30%;
+        flex-wrap: wrap;
 
     }
     .valueButton:hover {
@@ -32,9 +33,18 @@
         justify-content: center;
         border-radius: 2em;
         width: 30%;
+        flex-wrap: wrap;
 
     }
     @media (max-aspect-ratio: 1/1) {
+        .valueButton {
+            width: 100%;
+        }
+        .factButton {
+            width: 100%;
+        }
+    }
+    @media (min-aspect-ratio:1/1) and (max-aspect-ratio: 4/3) {
         .valueButton {
             width: 100%;
         }

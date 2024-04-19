@@ -1,18 +1,20 @@
 <template>
-    <filterNumbers v-bind:factArray="numberData" v-bind:filteredArray="tmpArray" v-bind:completeArray="indexArray" v-model:filteredArray="tmpArray"/> 
+    <filterNumbers class="filterNumber" v-bind:factArray="numberData" v-bind:filteredArray="tmpArray" v-bind:completeArray="indexArray" v-model:filteredArray="tmpArray"/> 
     <div>
         <button v-on:click="reverseData">Reverse</button>
     </div>
-    <displayNumber v-for="n in tmpArray" v-bind:value="n" v-bind:fact="numberData[n]"/>
+    <displayNumber class="displayCases" v-for="n in tmpArray" v-bind:value="n" v-bind:fact="numberData[n]"/>
 </template>
 
 <style>
     button {
         display: flex;
+        flex-wrap: wrap;
     }
     div {
         display: flex;
         width: 100%;
+        flex-wrap: wrap;
     }
 </style>
 
@@ -60,6 +62,7 @@
                 let res = []
                 res = t.split(' ')
                 res.map((x) => parseInt(x))
+                res.pop()
                 return res
             }
         }

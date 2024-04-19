@@ -63,11 +63,18 @@ header {
         text-align: center;
         color: red;
         background: orange;
+        flex-wrap: wrap;
     }
     @media (max-aspect-ratio: 1/1) {
         .header {
             width: 100%;
             background: blue;
+        }
+    }
+    @media (min-aspect-ratio:1/1) and (max-aspect-ratio: 4/3) {
+        .header {
+            width: 100%;
+            background: green;
         }
     }
 </style>

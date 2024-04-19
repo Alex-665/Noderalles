@@ -15,10 +15,15 @@
 </template>
 
 <style>
+    div {
+        display: flex;
+        justify-content: center;
+    }
     .research {
         font-size: 22px;
         width: 50%;
         margin: auto;
+        flex-wrap: wrap;
     }
     .notActived {
         background-color: white;
@@ -26,15 +31,16 @@
         font-size: 22px;
         width: 30%;
         border: none;
+        flex-wrap: wrap;
     }
     .actived {
         background-color: orange;
         justify-content: center;
         font-size: 22px;
-        font-size: 22px;
         width: 30%;
         border: none;
         color: red;
+        flex-wrap: wrap;
     }
     @media (max-aspect-ratio: 1/1) {
         .notActived {
@@ -42,6 +48,14 @@
         }
         .actived {
             width: 100%;
+        }
+    }
+    @media (min-aspect-ratio:1/1) and (max-aspect-ratio: 4/3) {
+        .notActived {
+            width: 50%;
+        }
+        .actived {
+            width: 50%;
         }
     }
 </style>
