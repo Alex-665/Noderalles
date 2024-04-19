@@ -58,16 +58,10 @@
     export default {
         name: 'displayNumber',
         props: ["value", "fact"],
-        //watch: {
-        //    counter: function(newCounter) {
-        //        sessionStorage.setItem("counter", newCounter)
-        //        console.log(newCounter)
-        //    }
-        //},
         data() {
             return {
                 counter: 0
             }
-        },
+        }
     }
 </script>

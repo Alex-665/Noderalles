@@ -1,5 +1,3 @@
-//useful functions for all the project
-
 async function fetchRangeMath() {
     let response = await fetch("http://numbersapi.com/0..99/math?json");
     let response2 = await fetch("http://numbersapi.com/100..199/math?json");

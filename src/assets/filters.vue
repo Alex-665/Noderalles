@@ -5,13 +5,12 @@
     <div>
         <input class="research" type="number" v-model="limit"/>
     </div>
-    <button class="notActived" v-if="greatBool % 2 == 0" v-on:click="greatBool += 1, updateAllFilters()">GreaterThan</button>
-    <button class="actived" v-else v-on:click="greatBool += 1, updateAllFilters()">GreaterThan</button>
-    <button class="notActived" v-if="oddBool % 2 == 0" v-on:click="oddBool += 1, updateAllFilters()">Odd</button>
-    <button class="actived" v-else v-on:click="oddBool += 1, updateAllFilters()">Odd</button>
-    <button class="notActived" v-if="evenBool % 2 == 0" v-on:click="evenBool += 1, updateAllFilters()">Even</button>
-    <button class="actived" v-else v-on:click="evenBool += 1, updateAllFilters()">Even</button>
-
+    <button class="notActived" v-if="greatCounter % 2 == 0" v-on:click="greatCounter += 1, updateAllFilters()">GreaterThan</button>
+    <button class="actived" v-else v-on:click="greatCounter += 1, updateAllFilters()">GreaterThan</button>
+    <button class="notActived" v-if="oddCounter % 2 == 0" v-on:click="oddCounter += 1, updateAllFilters()">Odd</button>
+    <button class="actived" v-else v-on:click="oddCounter += 1, updateAllFilters()">Odd</button>
+    <button class="notActived" v-if="evenCounter % 2 == 0" v-on:click="evenCounter += 1, updateAllFilters()">Even</button>
+    <button class="actived" v-else v-on:click="evenCounter += 1, updateAllFilters()">Even</button>
 </template>
 
 <style>
@@ -62,15 +61,15 @@
 
 <script>
     export default {
-        name: 'filterNumbers',
+        name: 'numberFilters',
         props: ["factArray", "completeArray", "filteredArray"],
         emits: ["update:filteredArray"],
         data() {
             return {
                 limit: 0,
-                greatBool: parseInt(localStorage.getItem("greatBool")) || 0,
-                oddBool: parseInt(localStorage.getItem("oddBool")) || 0,
-                evenBool: parseInt(localStorage.getItem("evenBool")) || 0,
+                greatCounter: parseInt(localStorage.getItem("greatCounter")) || 0,
+                oddCounter: parseInt(localStorage.getItem("oddCounter")) || 0,
+                evenCounter: parseInt(localStorage.getItem("evenCounter")) || 0,
                 search: localStorage.getItem("search") || ""
             }
         },
@@ -79,14 +78,14 @@
                 this.updateAllFilters()
                 localStorage.setItem("search", newSearch)
             },
-            greatBool: function(newGreatBool) {
-                localStorage.setItem("greatBool", newGreatBool)
+            greatCounter: function(newGreatCounter) {
+                localStorage.setItem("greatCounter", newGreatCounter)
             },
-            oddBool: function(newOddBool) {
-                localStorage.setItem("oddBool", newOddBool)
+            oddCounter: function(newOddCounter) {
+                localStorage.setItem("oddCounter", newOddCounter)
             },
-            evenBool: function(newEvenBool) {
-                localStorage.setItem("evenBool", newEvenBool)
+            evenCounter: function(newEvenCounter) {
+                localStorage.setItem("evenCounter", newEvenCounter)
             }
         },
         methods: {
@@ -95,28 +94,26 @@
             },
             greaterNumber(t) {
                 let res = t
-                if (this.greatBool % 2 == 1) {
+                if (this.greatCounter % 2 == 1) {
                     res = t.filter((x) => {return x > this.limit})
                 }
                 return res
             },
             evenNumber(t) {
                 let res = t
-                if (this.evenBool % 2 == 1) {
+                if (this.evenCounter % 2 == 1) {
                     res = t.filter((x) => {return x % 2 == 0})
                 }
                 return res
             },
             oddNumber(t) {
                 let res = t
-                if (this.oddBool % 2 == 1) {
+                if (this.oddCounter % 2 == 1) {
                     res = t.filter((x) => {return x % 2 == 1})
                 }
                 return res
             },
             primeNumber() {
-            },
-            fiboNumber() {
             },
             updateSearch(t) {
                 let res = []
@@ -142,5 +139,3 @@
         }
     }
 </script>
-
-
